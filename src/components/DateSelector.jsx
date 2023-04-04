@@ -3,7 +3,7 @@ import {View, Image, Text, TouchableOpacity, Button} from 'react-native';
 
 const DateSelector = ({onShowSuggestedDates}) => {
   return (
-    <View className="p-3 flex border-t-[2px] border-gray-300 flex-col items-center justify-center space-y-2">
+    <View className="p-3 flex border-t-[2px] border-gray-300 flex-col items-center justify-center space-y-4">
       <Text className="font-bold text-black text-xl">
         Suggest Three Date to meet
       </Text>
@@ -55,7 +55,7 @@ const DateSelector = ({onShowSuggestedDates}) => {
       </View>
       <TouchableOpacity
         onPress={onShowSuggestedDates}
-        className="w-full p-2 bg-[#FF0000] h-14 flex items-center justify-center">
+        className="w-full rounded-md p-2 bg-[#FF0000] h-14 flex items-center justify-center">
         <Text className="text-white font-bold font-sans text-xl">
           Suggest Dates
         </Text>

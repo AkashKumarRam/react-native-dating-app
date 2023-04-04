@@ -6,12 +6,16 @@ import SuggestedDates from './SuggestedDates';
 import PreferredTime from './PreferredTime';
 import Timing from './Timing';
 import SuggestArea from './SuggestArea';
+import TogetherThings from './TogetherThings';
+import InstagramDM from './InstagramDM';
 
 const Chatting = () => {
   const [showSuggestDates, setShowSuggestDates] = useState(false);
   const [showPreferedTime, setShowPreferedTime] = useState(false);
   const [showTiming, setTiming] = useState(false);
   const [showSuggestArea, setSuggestArea] = useState(false);
+  const [showTogetherThings, setShowTogetherThings] = useState(false);
+  const [showInstagramDm, setShowInstagramDm] = useState(false);
 
   const handleShowSuggestedDates = () => {
     setShowSuggestDates(true);
@@ -31,6 +35,23 @@ const Chatting = () => {
 
   const handleShowSuggestedArea = () => {
     setSuggestArea(true);
+    setTiming(false);
+    setShowSuggestDates(false);
+    setShowPreferedTime(false);
+  };
+
+  const handleShowTogetherThings = () => {
+    setShowTogetherThings(true);
+    setSuggestArea(false);
+    setTiming(false);
+    setShowSuggestDates(false);
+    setShowPreferedTime(false);
+  };
+
+  const handleShowInstagramDM = () => {
+    setShowInstagramDm(true);
+    setShowTogetherThings(false);
+    setSuggestArea(false);
     setTiming(false);
     setShowSuggestDates(false);
     setShowPreferedTime(false);
@@ -73,7 +94,11 @@ const Chatting = () => {
       ) : showTiming ? (
         <Timing onShowArea={handleShowSuggestedArea} />
       ) : showSuggestArea ? (
-        <SuggestArea />
+        <SuggestArea onShowTogether={handleShowTogetherThings} />
+      ) : showTogetherThings ? (
+        <TogetherThings onShowInstagramDm={handleShowInstagramDM} />
+      ) : showInstagramDm ? (
+        <InstagramDM />
       ) : (
         <DateSelector onShowSuggestedDates={handleShowSuggestedDates} />
       )}

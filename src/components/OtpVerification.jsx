@@ -1,11 +1,20 @@
-import React, {useLayoutEffect, useRef} from 'react';
+import React, {useLayoutEffect, useRef, useState, useEffect} from 'react';
 import {View, Image, Text, TextInput, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-const OtpVerification = (props) => {
+const OtpVerification = props => {
+  //   const [otp, setOtp] = useState('');
+  //   const isOtpComplete = otp.length === 4;
+
+  //   const handleSubmit = () => {
+  //     // handle OTP submission logic here
+  //   };
+
+  const [isOtpComplete, setIsOtpComplete] = useState(false);
+
   const navigation = useNavigation();
 
-  const {mobileNumber} = props.route.params
+  const {mobileNumber} = props.route.params;
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -18,7 +27,27 @@ const OtpVerification = (props) => {
   const input3 = useRef(null);
   const input4 = useRef(null);
 
-  const handleInputChange = (value, ref) => {
+//   const handleInputChange = (value, ref) => {
+//     if (value.length === 1) {
+//       ref.current.blur();
+//       // move focus to the next input
+//       switch (ref) {
+//         case input1:
+//           input2.current.focus();
+//           break;
+//         case input2:
+//           input3.current.focus();
+//           break;
+//         case input3:
+//           input4.current.focus();
+//           break;
+//         default:
+//           break;
+//       }
+//     }
+//   };
+
+  const handleOtpChange = (value, ref) => {
     if (value.length === 1) {
       ref.current.blur();
       // move focus to the next input
@@ -36,6 +65,7 @@ const OtpVerification = (props) => {
           break;
       }
     }
+    setIsOtpComplete(value.length === 4);
   };
 
   return (
@@ -53,36 +83,50 @@ const OtpVerification = (props) => {
         <View className="flex flex-row items-center space-x-2 mt-4">
           <TextInput
             ref={input1}
+            // onChangeText={setOtp}
             className="w-14 h-14 border-2 border-black rounded-md text-center text-2xl font-bold"
             keyboardType="numeric"
             maxLength={1}
-            onChangeText={value => handleInputChange(value, input1)}
+            onChangeText={value => handleOtpChange(value, input1)}
+            // onChangeText={value => handleInputChange(value, input1)}
           />
           <TextInput
             ref={input2}
             className="w-14 h-14 border-2 border-black rounded-md text-center text-2xl font-bold"
             keyboardType="numeric"
             maxLength={1}
-            onChangeText={value => handleInputChange(value, input2)}
+            onChangeText={value => handleOtpChange(value, input2)}
+            // onChangeText={setOtp}
+            // onChangeText={value => handleInputChange(value, input2)}
           />
           <TextInput
             ref={input3}
             className="w-14 h-14 border-2 border-black rounded-md text-center text-2xl font-bold"
             keyboardType="numeric"
             maxLength={1}
-            onChangeText={value => handleInputChange(value, input3)}
+            onChangeText={value => handleOtpChange(value, input3)}
+            // onChangeText={setOtp}
+            // onChangeText={value => handleInputChange(value, input3)}
           />
           <TextInput
             ref={input4}
             className="w-14 h-14 border-2 border-black rounded-md text-center text-2xl font-bold"
             keyboardType="numeric"
             maxLength={1}
-            onChangeText={value => handleInputChange(value, input4)}
+            onChangeText={value => handleOtpChange(value, input4)}
+            // onChangeText={setOtp}
+            // onChangeText={value => handleInputChange(value, input4)}
           />
         </View>
 
         <View className="w-[100%] pr-4 pl-4">
-          <TouchableOpacity className="mt-8 w-[100%] flex flex-row items-center justify-center bg-[#FF0000] p-2 rounded-full">
+          <TouchableOpacity
+            // onPress={handleSubmit}
+            // onPress={(console.log("hello"))}
+            // disabled={!isOtpComplete}
+            // onPress={handleSubmit}
+            disabled={!isOtpComplete}
+            className="mt-8 w-[100%] flex flex-row items-center justify-center bg-[#FF0000] p-2 rounded-full">
             <Text className="text-white font-bold text-lg">Continue</Text>
             <Image
               source={require('../assests/WhiteArrow.png')}

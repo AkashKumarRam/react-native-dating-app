@@ -43,7 +43,7 @@ const Login = () => {
         <View className="w-[100%] pr-4 pl-4">
           <TouchableOpacity
           onPress={handlelogin}
-            className="mt-8 w-[100%] flex flex-row items-center justify-center bg-[#FF0000] p-2 rounded-full">
+            className="mt-4 w-[100%] flex flex-row items-center justify-center bg-[#FF0000] p-2 rounded-full">
             <Text className="text-white font-bold text-lg">LOGIN</Text>
             <Image
               source={require('../assests/WhiteArrow.png')}
